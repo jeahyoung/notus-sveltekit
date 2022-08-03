@@ -11,12 +11,12 @@
       class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
     >
       <!-- Brand -->
-      <a
+      <!-- <a
         class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
         href="#pablo" on:click={(e) => e.preventDefault()}
       >
         Dashboard
-      </a>
+      </a> -->
       <!-- Form -->
       <form
         class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"

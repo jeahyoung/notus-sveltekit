@@ -3,7 +3,7 @@
   import { createPopper } from "@popperjs/core";
   // core components
 
-  const image = "../assets/img/team-1-800x800.jpg";
+  const image = "/assets/img/team-1-800x800.jpg";
 
   let dropdownPopoverShow = false;
 
