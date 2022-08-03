@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+		rel="stylesheet"
+		href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+		/>
+		<style>
+			.antialiased {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			.text-blueGray-700 {
+				--tw-text-opacity: 1;
+				color: rgba(51,65,85,var(--tw-text-opacity));
+			}
+		</style>
+		%sveltekit.head%
+	</head>
+	<body class="text-blueGray-700 antialiased">
+		<div>%sveltekit.body%</div>
+	</body>
+</html>
