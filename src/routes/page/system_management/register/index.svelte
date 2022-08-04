@@ -29,7 +29,7 @@
   const userSearchHandle = async (event: SubmitEvent) => {
     error = '';
     success = '';
-
+    //event.preventDefault();
     const formEl = event.target as HTMLFormElement;
     console.log('form=================>',formEl.action);
     const response = await send(formEl);
@@ -43,8 +43,8 @@
             success = response.success;
            
         }
-
-        formEl.reset();
+        event.preventDefault();
+        //formEl.reset();
   }
 
   // const data = [

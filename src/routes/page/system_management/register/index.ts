@@ -6,16 +6,17 @@ export const GET: RequestHandler =async ({ locals, params, request, url }) => {
    
     //const formData = await request.formData();
     //console.log("formData==>",formData);
+   
 
     const sql = locals.connection?.sql;
-    
+    console.log('userSearch==========',userSearch);
     const result = await sql`select id,
                                 "createAt",
                                 "updateAt",
                                 email,
                                 password
                             from "user"
-                            where email like ${userSearch + '%'}`;
+                            where 1=1 ${userSearch ? sql`and email like ${userSearch + '%'}` : sql``}`;
 
     console.log('result===',result);
 
