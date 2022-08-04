@@ -64,7 +64,17 @@
     'width': '100%'
     }};
 
-
+    const language = {
+    'search': {
+      'placeholder': '🔍 Search...'
+    },
+    'pagination': {
+      'previous': '⬅️',
+      'next': '➡️',
+      'showing': '😃 Displaying',
+      'results': () => 'Records'
+    }
+  };
   </script>
   
   <div class="flex flex-wrap mt-4">
@@ -96,7 +106,7 @@
               </div>
             </div>
 
-          <Grid {data} {style} pagination={true}/>
+          <Grid {data} {style} pagination={true} {language}/>
           <!-- Projects table -->
           <table class="items-center w-full bg-transparent border-collapse">
             <thead>
