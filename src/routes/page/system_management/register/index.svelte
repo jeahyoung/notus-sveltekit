@@ -1,5 +1,10 @@
+
+
 <script lang="ts">
     import { Search } from 'flowbite-svelte';
+    import Grid from 'gridjs-svelte';
+    import { send } from "$lib/api";
+
     // core components
     const bootstrap = "/assets/img/bootstrap.jpg";
   const angular = "/assets/img/angular.jpg";
@@ -15,11 +20,51 @@
   // can be one of light or dark
   const color = "light";
 
-  const userSearchHandle = (event: SubmitEvent) => {
-    //console.log('click search===>',event.target);
+  export let error: string;
+  export let success: string;
+  export let data: any;
+
+  
+
+  const userSearchHandle = async (event: SubmitEvent) => {
+    error = '';
+    success = '';
+
     const formEl = event.target as HTMLFormElement;
-    alert('click'+new FormData(formEl).get('user'));
+    console.log('form=================>',formEl.action);
+    const response = await send(formEl);
+    //alert('click'+new FormData(formEl).get('userSearch'));
+    if (response.error){
+            error = response.error;
+        }
+
+        if(response.success){
+            
+            success = response.success;
+           
+        }
+
+        formEl.reset();
   }
+
+  // const data = [
+  //   { name: "John", email: "john@example.com" },
+  //   { name: "Mark", email: "mark@gmail.com" },
+  // ];
+
+  const style = { 
+       td: {
+      border: '1px solid #ccc'
+    },
+    table: {
+      'text-indent': '0',
+      'border-color': 'inherit',
+    'align-items': 'center',
+      'border-collapse': 'collapse',
+    'width': '100%'
+    }};
+
+
   </script>
   
   <div class="flex flex-wrap mt-4">
@@ -27,7 +72,7 @@
         <div
         class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded {color === 'light' ? 'bg-white' : 'bg-red-800 text-white'}"
       >
-        <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <!-- <div class="rounded-t mb-0 px-4 py-3 border-0">
           <div class="flex flex-wrap items-center">
             <div class="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3
@@ -37,13 +82,21 @@
               </h3>
             </div>
           </div>
-        </div>
-        <div class="block w-full overflow-x-auto">
-            <div class="mb-6 flex justify-end">
+        </div> -->
+
+        <div class="block w-full overflow-x-auto mt-6 items-center">
+            <div class="mb-6 flex justify-between">
+              <div class="items-center ml-4">
+                <h3 class="font-semibold text-lg text-blueGray-700">
+                사용자 관리
+              </h3>
+              </div>
               <div class='w-80 mr-4'>
-                <Search placeholder='사용자명을 입력하세요' on:submit={userSearchHandle} name="user"/>
+                <Search placeholder='사용자명을 입력하세요' on:submit={userSearchHandle} name="userSearch"/>
               </div>
             </div>
+
+          <Grid {data} {style} pagination={true}/>
           <!-- Projects table -->
           <table class="items-center w-full bg-transparent border-collapse">
             <thead>
@@ -437,3 +490,5 @@
       </div>
     </div>
   </div>
+
+  

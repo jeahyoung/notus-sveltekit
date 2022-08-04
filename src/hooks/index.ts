@@ -4,6 +4,7 @@ import * as cookie from 'cookie';
 import { verify } from "jsonwebtoken";
 import "dotenv/config";
 import { createRefreshToken, maxAge, createAccessToken } from "$lib/jwt";
+import postgres from 'postgres';
 
 type JwtPayload = {
     id: number
@@ -142,6 +143,10 @@ export const handle: Handle =async ({ event, resolve }) => {
     console.log("==return==");
     //event.locals.user = { id: 9999, email: "email@email.email" };
     console.log("==return==>",event.locals);
+
+    const sql = postgres('postgres://test_adm:test_adm1!@61.33.146.138:5432/notus');
+    event.locals.connection = { sql: sql };
+
     const response = await resolve(event);
     response.headers.set('Set-Cookie', setCookie);
     return response;
