@@ -144,7 +144,8 @@ export const handle: Handle =async ({ event, resolve }) => {
     //event.locals.user = { id: 9999, email: "email@email.email" };
     console.log("==return==>",event.locals);
 
-    const sql = postgres('postgres://test_adm:test_adm1!@61.33.146.138:5432/notus');
+    // todo: DB
+    const sql = postgres('.env');
     event.locals.connection = { sql: sql };
 
     const response = await resolve(event);
